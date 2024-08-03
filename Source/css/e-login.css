@@ -1,0 +1,16 @@
+body {
+    background-image: url('../img/background-employee.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+
+
+#content {
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+#content.fade-in {
+  opacity: 1;
+}
