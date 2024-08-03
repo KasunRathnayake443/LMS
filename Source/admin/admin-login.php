@@ -13,7 +13,7 @@
         <div class="row justify-content-center ">
             <div class="col-md-6">
                 <h1 class="text-center mt-5">Leave Management System</h1> 
-                <h3 class="text-center mt-3 text-success">Admin Login</h3>
+                <h3 class="text-center mt-3 text-warning ">Admin Login</h3>
                 <form action="admin-login.php" method="post" class="mt-3">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>

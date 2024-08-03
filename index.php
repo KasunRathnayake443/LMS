@@ -9,12 +9,15 @@
     <script src="source/js/load.js"></script>
 </head>
 <body>
+
+
+
     <div class="container" id="content">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h1 class="text-center mt-5">Leave Management System</h1> 
-                <h3 class="text-center mt-3">Employee Login</h3>
-                <form action="login.php" method="post" class="mt-3">
+                <h3 class="text-center mt-3 text-success">Employee Login</h3>
+                <form action="source/employee/e-login.php" method="post" class="mt-3">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input type="email" class="form-control" name="email" id="email" required>
@@ -40,14 +43,15 @@
                     </div>
                 </form>
                 <div class="mt-3">
-                    <?php
-                        if (isset($_GET['error'])) {
-                            echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($_GET['error']) . '</div>';
-                        }
-                    ?>
+                   
+                    
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    
 </body>
 </html>
