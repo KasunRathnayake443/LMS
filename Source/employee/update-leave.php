@@ -11,22 +11,22 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['name'])) {
     exit;
 }
 
-$id = $_SESSION['id'];
-$name = $_SESSION['name'];
+$leave_id = $_SESSION['leave_id'];
+
 $leave_type = $_POST['leaveType'];
 $from_date = $_POST['leaveStart'];
 $to_date = $_POST['leaveEnd'];
 $reason = $_POST['leaveReason'];
-$status = "Pending";
 
-$stml = $conn->prepare("INSERT INTO leave_list (E_name, E_id, leave_type, Start, End, Status, Comment) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stml->bind_param("sssssss", $name, $id, $leave_type, $from_date, $to_date, $status, $reason);
+
+$stml = $conn->prepare("UPDATE leave_list SET  leave_type = ?, Start = ?, End = ?,  Comment = ? WHERE leave_id = ?");
+$stml->bind_param("sssss",  $leave_type, $from_date, $to_date, $reason, $leave_id);
 $stml->execute();
 $stml->close();
 
 echo "<script>
     
-    alert('Leave application submitted successfully.');
-    window.location.href='e-dashboard.php';
+    alert('Leave application updated successfully.');
+    window.location.href='leave-history.php';
 </script>";
 ?>

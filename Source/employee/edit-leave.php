@@ -2,7 +2,6 @@
 include '../config.php';
 session_start();
 
-
 if (!isset($_SESSION['id']) || !isset($_GET['leave_id'])) {
     echo "<script>
         alert('Invalid request.');
@@ -14,12 +13,14 @@ if (!isset($_SESSION['id']) || !isset($_GET['leave_id'])) {
 $id = $_SESSION['id'];
 $leave_id = $_GET['leave_id'];
 
-
 $stml = $conn->prepare("SELECT leave_type, Start, End, Comment FROM leave_list WHERE E_id = ? AND leave_id = ?");
 $stml->bind_param("ss", $id, $leave_id);
 $stml->execute();
 $result = $stml->get_result();
 $leave = $result->fetch_assoc();
+
+$leave_types_query = "SELECT leave_name FROM leave_types";
+$leave_types_result = $conn->query($leave_types_query);
 
 if (!$leave) {
     echo "<script>
@@ -41,15 +42,13 @@ if (!$leave) {
 </head>
 <body>
 <div class="d-flex">
-   
     <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
         <a class="navbar-brand" href="#">Leave Management System</a>
         <a class="nav-link" href="e-dashboard.php">Apply Leave</a>
         <a class="nav-link" href="leave-history.php">Leave History</a>
         <a class="nav-link" href="profile.php">Profile</a>
-        <a class="nav-link" href="logout.php">Logout</a>
+        <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
     </nav>
-    
     
     <div class="flex-grow-1">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,7 +64,7 @@ if (!$leave) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -79,9 +78,14 @@ if (!$leave) {
                 <div class="mb-3">
                     <label for="leaveType" class="form-label">Leave Type</label>
                     <select class="form-select" id="leaveType" name="leaveType" required>
-                        <option value="Sick Leave" <?php if ($leave['leave_type'] == 'Sick Leave') echo 'selected'; ?>>Sick Leave</option>
-                        <option value="Casual Leave" <?php if ($leave['leave_type'] == 'Casual Leave') echo 'selected'; ?>>Casual Leave</option>
-                        <option value="Paid Leave" <?php if ($leave['leave_type'] == 'Paid Leave') echo 'selected'; ?>>Paid Leave</option>
+                        <?php
+                        if ($leave_types_result->num_rows > 0) {
+                            while ($row = $leave_types_result->fetch_assoc()) {
+                                $selected = ($leave['leave_type'] == $row['leave_name']) ? 'selected' : '';
+                                echo '<option value="' . htmlspecialchars($row['leave_name']) . '" ' . $selected . '>' . htmlspecialchars($row['leave_name']) . '</option>';
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -103,10 +107,12 @@ if (!$leave) {
 </div>
 
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+<script src="logout.js"></script>
 </body>
 </html>
 
 <?php
+$_SESSION['leave_id'] = $leave_id;
 $stml->close();
 $conn->close();
 ?>
