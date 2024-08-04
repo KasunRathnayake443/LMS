@@ -44,7 +44,7 @@ $result = $stml->get_result();
         <a class="navbar-brand" href="#">Leave Management System</a>
         <a class="nav-link" href="e-dashboard.php">Apply Leave</a>
         <a class="nav-link" href="leave-history.php">Leave History</a>
-        <a class="nav-link" href="profile.php">Profile</a>
+        <a class="nav-link" href="edit-profile.php">Profile</a>
         <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
     </nav>
     <div class="flex-grow-1">
@@ -56,7 +56,7 @@ $result = $stml->get_result();
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="profile.php">
+                            <a class="nav-link" href="edit-profile.php">
                                 <img src="../img/profile_icon.png" alt="Profile Icon" style="width: 30px; height: 30px;"> Edit Profile
                             </a>
                         </li>
