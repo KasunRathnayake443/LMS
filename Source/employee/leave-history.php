@@ -12,7 +12,7 @@ if (!isset($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
-$stml = $conn->prepare("SELECT leave_id, leave_type, Start, End, Status, Comment FROM leave_list WHERE E_id = ?");
+$stml = $conn->prepare("SELECT leave_id, leave_type, Start, End, Status, Comment FROM leave_list WHERE E_id = ? ORDER BY CASE Status WHEN 'Pending' THEN 1 WHEN 'Approved' THEN 2 ELSE 3 END");
 $stml->bind_param("s", $id);
 $stml->execute();
 $result = $stml->get_result();
@@ -26,6 +26,7 @@ $result = $stml->get_result();
     <title>Leave History - Leave Management System</title>
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/e-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .container {
             margin-top: 20px;
@@ -81,16 +82,27 @@ $result = $stml->get_result();
                     </tr>
                 </thead>
                 <tbody>
+
+
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
+                        
                         <td><?php echo htmlspecialchars($row['leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
                         <td><?php echo htmlspecialchars($row['End']); ?></td>
-                        <td><?php echo htmlspecialchars($row['Status']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Status']); 
+                       if ($row['Status'] == 'Pending') {
+                        echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                    } elseif ($row['Status'] == 'Approved') {
+                        echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
+                    } elseif ($row['Status'] == 'Declined') {
+                        echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
+                    }
+                        ?></td>
                         <td><?php echo htmlspecialchars($row['Comment']); ?></td>
                         <td>
                             <?php if ($row['Status'] == 'Pending'): ?>
-                                <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" class="btn btn-warning btn-edit">Edit</a>
+                                <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" class="btn btn-warning btn-edit btn-sm">Edit</a>
                             <?php endif; ?>
                         </td>
                     </tr>
