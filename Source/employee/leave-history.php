@@ -103,6 +103,10 @@ $result = $stml->get_result();
                         <td>
                             <?php if ($row['Status'] == 'Pending'): ?>
                                 <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" class="btn btn-warning btn-edit btn-sm">Edit</a>
+                                <form action="delete-leave.php" method="post" class="d-inline">
+                                    <input type="hidden" name="leave_id" value="<?php echo htmlspecialchars($row['leave_id']); ?>">
+                                    <button type="submit" class="btn btn-danger btn-delete btn-sm" onclick="return confirm('Are you sure you want to delete this leave request?');">Delete</button>
+                                </form>
                             <?php endif; ?>
                         </td>
                     </tr>
