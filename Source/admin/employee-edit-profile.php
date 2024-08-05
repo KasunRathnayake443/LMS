@@ -2,7 +2,7 @@
 include '../config.php';
 session_start();
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])|| !isset($_GET['E_id'])) {
     echo "<script>
         alert('Please login as admin.');
         window.location.href='admin-login.php';
@@ -10,7 +10,18 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
+$E_id = $_GET['E_id'];
+
+$stml = $conn->prepare("SELECT E_name, E_email, E_department FROM employees WHERE E_id = ?");
+$stml->bind_param("s", $E_id);
+$stml->execute();
+$result = $stml->get_result();
+$employee = $result->fetch_assoc();
+
+
+
 $admin_email = $_SESSION['email'];
+
 
 $stml = $conn->prepare("SELECT A_id, A_name FROM admin WHERE A_email = ?");
 $stml->bind_param("s", $admin_email);
@@ -20,13 +31,9 @@ $stml->bind_result($admin_id, $admin_name);
 $stml->fetch();
 $stml->close();
 
-$employees_count_query = "SELECT COUNT(*) as count FROM employees";
-$employees_count_result = $conn->query($employees_count_query);
-$employees_count = $employees_count_result->fetch_assoc()['count'];
 
-$employees_query = "SELECT * FROM employees";
-$employees_result = $conn->query($employees_query);
-
+$departments_query = "SELECT d_name FROM departments";
+$departments_result = $conn->query($departments_query);
 
 
 
@@ -73,43 +80,40 @@ $employees_result = $conn->query($employees_query);
             </div>
         </nav>
 
+        <h2 class="text-secondary">Employee, <?php echo htmlspecialchars($employee['E_name']); ?></h2>
         <div class="container mt-4">
-            <div class="d-flex justify-content-around">
-                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Number of Employees</div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $employees_count; ?></h5>
-                        <p class="card-text">Number of Employees</p>
-                    </div>
+            <h3 class="text-secondary">Edit Profile</h3>
+            <form action="update-profile.php" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($employee['E_name']); ?>" required>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($employee['E_email']); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Department</label>
+                    <select class="form-select" id="department" name="department" required>
+                    <?php
+                        if ($departments_result->num_rows > 0) {
+                            while ($row = $departments_result->fetch_assoc()) {
+                                $selected = ($employee['E_department'] == $row['d_name']) ? 'selected' : '';
+                                echo '<option value="' . htmlspecialchars($row['d_name']) . '" ' . $selected . '>' . htmlspecialchars($row['d_name']) . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                    <small class="form-text text-muted">Leave blank to keep the current password.</small>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+            </form>
         </div>
-        <h2 class="text-secondary">Most Recent Leave Requests</h2>
-            <table class="table table-bordered mt-4">
-                <thead>
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Employee Name</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $employees_result->fetch_assoc()): ?>
-                    <tr>
-                    <td><?php echo htmlspecialchars($row['E_id']); ?></td>
-                        <td><?php echo htmlspecialchars($row['E_name']); ?></td>
-                        <td><?php echo htmlspecialchars($row['E_department']); ?></td>
-                        <td><?php echo htmlspecialchars($row['E_email']); ?></td>
-                        <td>
-                        <a href="employee-edit-profile.php?E_id=<?php echo htmlspecialchars($row['E_id']); ?>" > <i class="fas fa-edit"></i></a>
-                        </td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-
+           
     </div>
 </div>
 
