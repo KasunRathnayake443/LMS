@@ -82,31 +82,26 @@ $result = $stml->get_result();
                     </tr>
                 </thead>
                 <tbody>
-
-
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        
                         <td><?php echo htmlspecialchars($row['leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
                         <td><?php echo htmlspecialchars($row['End']); ?></td>
-                        <td><?php echo htmlspecialchars($row['Status']); 
-                       if ($row['Status'] == 'Pending') {
-                        echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
-                    } elseif ($row['Status'] == 'Approved') {
-                        echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
-                    } elseif ($row['Status'] == 'Declined') {
-                        echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
-                    }
+                        <td><?php 
+                            echo htmlspecialchars($row['Status']); 
+                            if ($row['Status'] == 'Pending') {
+                                echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                            } elseif ($row['Status'] == 'Approved') {
+                                echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
+                            } elseif ($row['Status'] == 'Declined') {
+                                echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
+                            }
                         ?></td>
                         <td><?php echo htmlspecialchars($row['Comment']); ?></td>
                         <td>
                             <?php if ($row['Status'] == 'Pending'): ?>
-                                <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" class="btn btn-warning btn-edit btn-sm">Edit</a>
-                                <form action="delete-leave.php" method="post" class="d-inline">
-                                    <input type="hidden" name="leave_id" value="<?php echo htmlspecialchars($row['leave_id']); ?>">
-                                    <button type="submit" class="btn btn-danger btn-delete btn-sm" onclick="return confirm('Are you sure you want to delete this leave request?');">Delete</button>
-                                </form>
+                                <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>"><i class="fas fa-edit"></i></a>
+                                <a href="delete-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" class="btn-edit" onclick="return confirm('Are you sure you want to delete this leave request?')"><i class="fas fa-trash"></i></a>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -123,6 +118,7 @@ $result = $stml->get_result();
 </html>
 
 <?php
+$_SESSION['id'] = $id;
 $stml->close();
 $conn->close();
 ?>

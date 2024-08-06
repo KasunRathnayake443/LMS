@@ -2,7 +2,7 @@
 include '../config.php';
 session_start();
 
-if ( !isset($_POST['leave_id'])) {
+if (!isset($_GET['leave_id'])) {
     echo "<script>
         alert('Invalid request.');
         window.location.href='leave-history.php';
@@ -10,15 +10,14 @@ if ( !isset($_POST['leave_id'])) {
     exit;
 }
 
+$leave_id = $_GET['leave_id'];
 
-$leave_id = $_POST['leave_id'];
-
-$stml = $conn->prepare("DELETE FROM leave_list WHERE  leave_id = ?");
+$stml = $conn->prepare("DELETE FROM leave_list WHERE leave_id = ?");
 $stml->bind_param("s", $leave_id);
 
 if ($stml->execute()) {
     echo "<script>
-        
+        alert('Leave request deleted successfully.');
         window.location.href='leave-history.php';
     </script>";
 } else {
