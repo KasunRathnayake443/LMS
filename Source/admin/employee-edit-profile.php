@@ -35,7 +35,7 @@ $stml->close();
 $departments_query = "SELECT d_name FROM departments";
 $departments_result = $conn->query($departments_query);
 
-
+$_SESSION['E_id'] = $E_id;
 
 ?>
 
@@ -83,7 +83,7 @@ $departments_result = $conn->query($departments_query);
         <h2 class="text-secondary">Employee, <?php echo htmlspecialchars($employee['E_name']); ?></h2>
         <div class="container mt-4">
             <h3 class="text-secondary">Edit Profile</h3>
-            <form action="update-profile.php" method="post">
+            <form action="employee-edit-profile-backend.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($employee['E_name']); ?>" required>

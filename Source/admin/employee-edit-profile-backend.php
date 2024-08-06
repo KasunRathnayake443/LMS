@@ -2,27 +2,26 @@
 include '../config.php';
 session_start();
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['email'])) {
     echo "<script>
         alert('Please login first.');
-        window.location.href='../../index.php';
+        window.location.href='admin-login.php';
     </script>";
     exit;
 }
 
-$id = $_SESSION['id'];
+$E_id = $_SESSION['E_id'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $department = $_POST['department'];
 $password = $_POST['password'];
 
 if ($password) {
-   
     $stml = $conn->prepare("UPDATE employees SET E_name = ?, E_email = ?, E_department = ?, E_password = ? WHERE E_id = ?");
-    $stml->bind_param("sssss", $name, $email, $department, $password, $id);
+    $stml->bind_param("sssss", $name, $email, $department, $password, $E_id);
 } else {
     $stml = $conn->prepare("UPDATE employees SET E_name = ?, E_email = ?, E_department = ? WHERE E_id = ?");
-    $stml->bind_param("ssss", $name, $email, $department, $id);
+    $stml->bind_param("ssss", $name, $email, $department, $E_id);
 }
 
 $stml->execute();
@@ -32,12 +31,12 @@ if ($stml->affected_rows > 0) {
     $_SESSION['email'] = $email;
     echo "<script>
         alert('Profile updated successfully.');
-        window.location.href='e-dashboard.php';
+        window.location.href='employees.php';
     </script>";
 } else {
     echo "<script>
         alert('No changes made to the profile.');
-        window.location.href='e-dashboard.php';
+        window.location.href='employees.php';
     </script>";
 }
 
