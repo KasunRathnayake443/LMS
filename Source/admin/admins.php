@@ -20,15 +20,15 @@ $stml->bind_result($admin_id, $admin_name);
 $stml->fetch();
 $stml->close();
 
-$employees_count_query = "SELECT COUNT(*) as count FROM employees";
-$employees_count_result = $conn->query($employees_count_query);
-$employees_count = $employees_count_result->fetch_assoc()['count'];
+$admin_count_query = "SELECT COUNT(*) as count FROM admin";
+$admin_count_result = $conn->query($admin_count_query);
+$admin_count = $admin_count_result->fetch_assoc()['count'];
 
-$employees_query = "SELECT * FROM employees";
-$employees_result = $conn->query($employees_query);
+$admin_query = "SELECT * FROM admin";
+$admin_result = $conn->query($admin_query);
 
-$departments_query = "SELECT * FROM departments";
-$departments_result = $conn->query($departments_query);
+$admin_query = "SELECT * FROM admin";
+$admin_result = $conn->query($admin_query);
 
 ?>
 
@@ -75,64 +75,55 @@ $departments_result = $conn->query($departments_query);
             <div class="row">
                 <div class="col-md-6" style="max-width: 30rem;">
                 <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
-                        <div class="card-header">Number of Employees</div>
+                        <div class="card-header">Number of Admins</div>
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $employees_count; ?></h5>
-                            <p class="card-text">Number of Employees</p>
+                            <h5 class="card-title"><?php echo $admin_count; ?></h5>
+                            <p class="card-text">Number of Admins</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6" >
-                    <h2 class="text-secondary">Add New Employee</h2>
-                    <form action="add-employee.php"  method="post">
+                    <h2 class="text-secondary">Add New Admin</h2>
+                    <form action="add-admin.php"  method="post">
                         <div class="mb-3">
-                            <label for="employeeName" class="form-label">Employee Name</label>
-                            <input type="text" class="form-control" id="employeeName" name="employeeName" required>
+                            <label for="adminName" class="form-label">Admin Name</label>
+                            <input type="text" class="form-control" id="adminName" name="adminName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="employeeEmail" class="form-label">Employee Email</label>
-                            <input type="email" class="form-control" id="employeeEmail" name="employeeEmail" required>
+                            <label for="adminEmail" class="form-label">Admin Email</label>
+                            <input type="email" class="form-control" id="adminEmail" name="adminEmail" required>
                         </div>
                         <div class="mb-3">
-                            <label for="employeeDepartment" class="form-label">Department</label>
-                            <select class="form-select" id="employeeDepartment" name="employeeDepartment" required>
-                                <?php while ($row = $departments_result->fetch_assoc()): ?>
-                                    <option value="<?php echo htmlspecialchars($row['d_name']); ?>"><?php echo htmlspecialchars($row['d_name']); ?></option>
-                                <?php endwhile; ?>
-                            </select>
+                            <label for="adminPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" name="adminPassword" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="employeePassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="employeePassword" name="employeePassword" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Employee</button>
+                        <button type="submit" class="btn btn-primary">Add Admin</button>
                     </form>
                 </div>
             </div>
 
             <div class="mt-5">
-                <h2 class="text-secondary">All Employees</h2>
+                <h2 class="text-secondary">All Admins</h2>
                 <table class="table table-bordered mt-4">
                     <thead>
                         <tr>
-                            <th>Employee ID</th>
-                            <th>Employee Name</th>
+                            <th>Admin ID</th>
+                            <th>Admin Name</th>
                             <th>Email</th>
-                            <th>Department</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = $employees_result->fetch_assoc()): ?>
+                        <?php while ($row = $admin_result->fetch_assoc()): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['E_id']); ?></td>
-                            <td><?php echo htmlspecialchars($row['E_name']); ?></td>
-                            <td><?php echo htmlspecialchars($row['E_email']); ?></td>
-                            <td><?php echo htmlspecialchars($row['E_department']); ?></td>
+                            <td><?php echo htmlspecialchars($row['A_id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['A_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['A_email']); ?></td>
+                            
                             <td>
-                                <a href="employee-edit-profile.php?E_id=<?php echo htmlspecialchars($row['E_id']); ?>" ><i class="fas fa-edit"></i></a>
-                                <a href="employee-delete.php?E_id=<?php echo htmlspecialchars($row['E_id']); ?>" onclick="return confirm('Are you sure you want to delete this employee?')"><i class="fas fa-trash"></i></a>
+                                <a href="edit-admin.php?A_id=<?php echo htmlspecialchars($row['A_id']); ?>" ><i class="fas fa-edit"></i></a>
+                                <a href="admin-delete.php?A_id=<?php echo htmlspecialchars($row['A_id']); ?>" onclick="return confirm('Are you sure you want to delete this Admin?')"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php endwhile; ?>

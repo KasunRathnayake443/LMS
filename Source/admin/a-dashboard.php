@@ -55,9 +55,9 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
 </head>
 <body>
 <div class="d-flex">
-    <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
+    <nav class="nav flex-column bg-light p-3" style="width: 300px; min-height: 100vh; ">
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
-        <a class="nav-link" href="a-dashboard.php"> DashBoard</a>
+        <a class="nav-link" href="a-dashboard.php"> Dashboard</a>
         <a class="nav-link" href="employees.php"> Employees</a>
         <a class="nav-link" href="leave-requests.php"> Leave Requests</a>
         <a class="nav-link" href="leave-types.php"> Leave Types</a>

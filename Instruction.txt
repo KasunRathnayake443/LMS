@@ -1,0 +1,11 @@
+Database name = lms
+
+admin logins 
+
+email= admin@gmail.com
+password = admin
+
+employee logins
+
+email = test@gmail.com
+password = test123

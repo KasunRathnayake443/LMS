@@ -2,7 +2,7 @@
 include '../config.php';
 session_start();
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])|| !isset($_GET['A_id'])) {
     echo "<script>
         alert('Please login as admin.');
         window.location.href='admin-login.php';
@@ -10,7 +10,18 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
+$A_id = $_GET['A_id'];
+
+$stml = $conn->prepare("SELECT A_name, A_email FROM admin WHERE A_id = ?");
+$stml->bind_param("s", $A_id);
+$stml->execute();
+$result = $stml->get_result();
+$employee = $result->fetch_assoc();
+
+
+
 $admin_email = $_SESSION['email'];
+
 
 $stml = $conn->prepare("SELECT A_id, A_name FROM admin WHERE A_email = ?");
 $stml->bind_param("s", $admin_email);
@@ -22,18 +33,8 @@ $stml->close();
 
 
 
-$pending_query = "SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Pending'";
-$pending_result = $conn->query($pending_query);
-$pending_count = $pending_result->fetch_assoc()['count'];
 
-$Declined_query = "SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Declined'";
-$Declined_result = $conn->query($Declined_query);
-$Declined_count = $Declined_result->fetch_assoc()['count'];
-
-$Approved_query = "SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Approved'";
-$Approved_result = $conn->query($Approved_query);
-$Approved_count = $Approved_result->fetch_assoc()['count'];
-
+$_SESSION['A_id'] = $A_id;
 
 ?>
 
@@ -52,9 +53,9 @@ $Approved_count = $Approved_result->fetch_assoc()['count'];
 </head>
 <body>
 <div class="d-flex">
-    <nav class="nav flex-column bg-light p-3" style="width: 300px; min-height: 100vh; ">
+    <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
-        <a class="nav-link" href="a-dashboard.php"> Dashboard</a>
+        <a class="nav-link" href="a-dashboard.php"> DashBoard</a>
         <a class="nav-link" href="employees.php"> Employees</a>
         <a class="nav-link" href="leave-requests.php"> Leave Requests</a>
         <a class="nav-link" href="leave-types.php"> Leave Types</a>
@@ -78,34 +79,27 @@ $Approved_count = $Approved_result->fetch_assoc()['count'];
             </div>
         </nav>
 
+        <h2 class="text-secondary">Admin, <?php echo htmlspecialchars($employee['A_name']); ?></h2>
         <div class="container mt-4">
-            <div class="d-flex justify-content-around">
-                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Pending Leave Requests</div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $pending_count; ?></h5>
-                        <p class="card-text">Pending Leave Requests</p>
-                    </div>
+            <h3 class="text-secondary">Edit Profile</h3>
+            <form action="edit-admin-backend.php" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($employee['A_name']); ?>" required>
                 </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Approved Leave Requests</div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $Approved_count ; ?></h5>
-                        <p class="card-text">Approved Leave Requests</p>
-                    </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($employee['A_email']); ?>" required>
                 </div>
-                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Declined Leave Requests</div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $Declined_count; ?></h5>
-                        <p class="card-text">Declined Leave Requests</p>
-                    </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                    <small class="form-text text-muted">Leave blank to keep the current password.</small>
                 </div>
-            </div>
-
-           
-            
+                <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+            </form>
         </div>
+           
     </div>
 </div>
 
