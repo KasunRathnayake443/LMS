@@ -74,7 +74,7 @@ $admin_result = $conn->query($admin_query);
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-6" style="max-width: 30rem;">
-                <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
                         <div class="card-header">Number of Admins</div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $admin_count; ?></h5>

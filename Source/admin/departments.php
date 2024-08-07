@@ -73,7 +73,7 @@ $d_result = $conn->query($d_query);
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-6" style="max-width: 30rem;">
-                <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
                         <div class="card-header">Number of Departments</div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $d_count; ?></h5>

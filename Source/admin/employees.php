@@ -74,7 +74,7 @@ $departments_result = $conn->query($departments_query);
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-6" style="max-width: 30rem;">
-                <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
                         <div class="card-header">Number of Employees</div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $employees_count; ?></h5>

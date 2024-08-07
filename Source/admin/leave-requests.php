@@ -35,6 +35,9 @@ $Approved_result = $conn->query($Approved_query);
 $Approved_count = $Approved_result->fetch_assoc()['count'];
 
 
+$pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
+$pending_result = $conn->query($pendig_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -101,11 +104,45 @@ $Approved_count = $Approved_result->fetch_assoc()['count'];
                         <p class="card-text">Declined Leave Requests</p>
                     </div>
                 </div>
-            </div>
-
-           
-            
+            </div>    
         </div>
+
+        <div class="container mt-4">
+            <h2 class="text-secondary">Pending Leave Requests</h2>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $pending_result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Start']); ?></td>
+                        <td><?php echo htmlspecialchars($row['End']); ?></td>
+                        <td><?php 
+                            echo htmlspecialchars($row['Status']); 
+                            if ($row['Status'] == 'Pending') {
+                                echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                            }
+                        ?></td>
+                        <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        <td>
+                           
+                                <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>"><i class="fas fa-edit"></i></a>                         
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
