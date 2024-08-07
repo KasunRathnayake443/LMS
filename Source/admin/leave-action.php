@@ -2,40 +2,45 @@
 include '../config.php';
 session_start();
 
-if (!isset($_SESSION['email'])|| !isset($_GET['leave_id'])) {
+if (!isset($_SESSION['email'])) {
     echo "<script>
         alert('Please login as admin.');
         window.location.href='admin-login.php';
     </script>";
     exit;
 }
-
+$A_id = $_SESSION['A_id'];
+$A_name =$_SESSION['A_name'];
+$admin_email = $_SESSION['email'];
 $leave_id = $_GET['leave_id'];
 
 $stml = $conn->prepare("SELECT * FROM leave_list WHERE leave_id = ?");
-$stml->bind_param("s", $leave_id);
+$stml->bind_param("i", $leave_id);
 $stml->execute();
 $result = $stml->get_result();
-$employee = $result->fetch_assoc();
-
-
-
-$admin_email = $_SESSION['email'];
-
-
-$stml = $conn->prepare("SELECT A_id, A_name FROM admin WHERE A_email = ?");
-$stml->bind_param("s", $admin_email);
-$stml->execute();
-$stml->store_result();
-$stml->bind_result($admin_id, $admin_name);
-$stml->fetch();
+$leave_request = $result->fetch_assoc();
 $stml->close();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $admin_remark = $_POST['admin_remark'];
+    $status = $_POST['status'];
 
+    $update_stml = $conn->prepare("UPDATE leave_list SET a_remark = ?, Status = ?, A_id =? WHERE leave_id = ?");
+    $update_stml->bind_param("ssss", $admin_remark, $status, $leave_id,$A_id);
 
+    if ($update_stml->execute()) {
+        echo "<script>
+            alert('Leave request updated successfully.');
+            window.location.href='leave-requests.php';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Error updating leave request.');
+        </script>";
+    }
 
-$_SESSION['leave_id'] = $leave_id;
-
+    $update_stml->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,23 +48,20 @@ $_SESSION['leave_id'] = $leave_id;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Leave Management System</title>
+    <title>Leave Request Action - Leave Management System</title>
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-       
-    </style>
 </head>
 <body>
 <div class="d-flex">
     <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
-        <a class="nav-link" href="a-dashboard.php"> DashBoard</a>
-        <a class="nav-link" href="employees.php"> Employees</a>
-        <a class="nav-link" href="leave-requests.php"> Leave Requests</a>
-        <a class="nav-link" href="leave-types.php"> Leave Types</a>
-        <a class="nav-link" href="departments.php"> Departments</a>
+        <a class="nav-link" href="a-dashboard.php">Dashboard</a>
+        <a class="nav-link" href="employees.php">Employees</a>
+        <a class="nav-link" href="leave-requests.php">Leave Requests</a>
+        <a class="nav-link" href="leave-types.php">Leave Types</a>
+        <a class="nav-link" href="departments.php">Departments</a>
         <a class="nav-link" href="admins.php">Admins</a>
         <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
     </nav>
@@ -68,57 +70,69 @@ $_SESSION['leave_id'] = $leave_id;
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <span class="navbar-text">
-                    Welcome, <?php echo $admin_name; ?>
+                    Welcome, <?php echo $A_name; ?>
                 </span>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                        <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
+                            <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        
         <div class="container mt-4">
-            <h3 class="text-secondary">Leave Request No. <?php echo $leave_id ;?></h3>
-            <form action="employee-edit-profile-backend.php" method="post">
+            <h2 class="text-secondary">Leave Request Details</h2>
+            <table class="table table-bordered mt-4">
+                <tr>
+                    <th>Leave Type</th>
+                    <td><?php echo htmlspecialchars($leave_request['Leave_type']); ?></td>
+                </tr>
+                <tr>
+                    <th>Start Date</th>
+                    <td><?php echo htmlspecialchars($leave_request['Start']); ?></td>
+                </tr>
+                <tr>
+                    <th>End Date</th>
+                    <td><?php echo htmlspecialchars($leave_request['End']); ?></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td><?php echo htmlspecialchars($leave_request['Status']); ?></td>
+                </tr>
+                <tr>
+                    <th>Employee Comment</th>
+                    <td><?php echo htmlspecialchars($leave_request['Comment']); ?></td>
+                </tr>
+                <tr>
+                    <th>Admin Remark</th>
+                    <td><?php echo htmlspecialchars($leave_request['a_remark']); ?></td>
+                </tr>
+            </table>
+
+            <h2 class="text-secondary">Update Leave Request</h2>
+            <form action="" method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($employee['E_name']); ?>" required>
+                    <label for="admin_remark" class="form-label">Admin Remark</label>
+                    <textarea class="form-control" id="admin_remark" name="admin_remark" required><?php echo htmlspecialchars($leave_request['a_remark']); ?></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($employee['E_email']); ?>" required>
-                </div>
-                <div class="mb-3">
-                    <label for="department" class="form-label">Department</label>
-                    <select class="form-select" id="department" name="department" required>
-                    <?php
-                        if ($departments_result->num_rows > 0) {
-                            while ($row = $departments_result->fetch_assoc()) {
-                                $selected = ($employee['E_department'] == $row['d_name']) ? 'selected' : '';
-                                echo '<option value="' . htmlspecialchars($row['d_name']) . '" ' . $selected . '>' . htmlspecialchars($row['d_name']) . '</option>';
-                            }
-                        }
-                        ?>
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="Pending" <?php echo $leave_request['Status'] == 'Pending' ? 'selected' : ''; ?>>Pending</option>
+                        <option value="Approved" <?php echo $leave_request['Status'] == 'Approved' ? 'selected' : ''; ?>>Approved</option>
+                        <option value="Declined" <?php echo $leave_request['Status'] == 'Declined' ? 'selected' : ''; ?>>Declined</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                    <small class="form-text text-muted">Leave blank to keep the current password.</small>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                <button type="submit" class="btn btn-primary">Update Leave Request</button>
             </form>
         </div>
-           
     </div>
 </div>
 
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
-
 </body>
 </html>
 

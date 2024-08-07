@@ -20,7 +20,8 @@ $stml->bind_result($admin_id, $admin_name);
 $stml->fetch();
 $stml->close();
 
-
+$_SESSION['A_name'] = $admin_name;
+$_SESSION['A_id'] = $admin_id;
 
 $pending_query = "SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Pending'";
 $pending_result = $conn->query($pending_query);
@@ -38,6 +39,8 @@ $Approved_count = $Approved_result->fetch_assoc()['count'];
 $pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
 $pending_result = $conn->query($pendig_query);
 
+$pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
+$pending_result = $conn->query($pendig_query);
 ?>
 
 <!DOCTYPE html>
