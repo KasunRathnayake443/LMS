@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2024 at 03:53 PM
+-- Generation Time: Aug 08, 2024 at 06:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -85,7 +85,8 @@ CREATE TABLE `employees` (
 INSERT INTO `employees` (`E_id`, `E_name`, `E_email`, `E_department`, `E_password`) VALUES
 (4, 'Aron Black', 'black@gmail.com', 'Finance', 'black123'),
 (5, 'abc', 'abc@gmail.com', 'Marketing', '123'),
-(7, 'kasun', 'kasun@gmail.com', 'Marketing', '123');
+(7, 'kasun', 'kasun@gmail.com', 'Marketing', '123'),
+(8, 'Test Employee', 'test@gmail.com', 'Marketing', 'test123');
 
 -- --------------------------------------------------------
 
@@ -111,13 +112,11 @@ CREATE TABLE `leave_list` (
 --
 
 INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `End`, `Status`, `Comment`, `A_id`, `a_remark`) VALUES
-(1, 1, 'Kasun Rathanayake', 'Sick leave', '2024-08-16', '2024-08-16', 'Approved', 'test', 0, ''),
-(3, 2, 'Aron Black', 'Unpaid leave', '2024-08-07', '2024-08-22', 'Pending', 'fff', 0, ''),
-(1, 3, 'Kasun Rathanayake', 'Sick leave', '2024-08-13', '2024-09-28', 'Approved', 'kkkkkkkkkklllllllllllllllllll', 0, ''),
-(1, 5, 'Kasun Rathanayake', 'Unpaid leave', '2024-08-15', '2024-08-30', 'Declined', 'ssssssssss', 0, ''),
-(1, 9, 'Kasun Rathnayake', 'Bereavement leave', '2024-08-10', '2024-08-15', 'Pending', 'jjj', 0, ''),
-(5, 11, 'abc', 'Casual leave', '2024-08-21', '2024-08-30', 'Pending', '22222', 0, ''),
-(7, 13, 'kasun', 'Unpaid leave', '2024-08-15', '2024-08-23', 'Approved', 'nnnnn', 0, '');
+(1, 1, 'Kasun Rathanayake', 'Sick leave', '2024-08-16', '2024-08-16', 'Pending', 'test', 1, 'change decline to pending'),
+(5, 11, 'abc', 'Casual leave', '2024-08-21', '2024-08-30', 'Declined', '22222', 3, 'change pending to declined'),
+(8, 14, 'Test Employee', 'Bereavement leave', '2024-08-24', '2024-08-10', 'Approved', 'test', 3, 'change pending to approved'),
+(7, 17, 'kasun', 'Unpaid leave', '2024-08-10', '2024-08-20', 'Approved', 'new test', 1, 'approved'),
+(4, 18, 'Aron Black', 'Unpaid leave', '2024-08-09', '2024-08-28', 'Pending', 'test employee requests', 0, '');
 
 -- --------------------------------------------------------
 
@@ -196,13 +195,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `E_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `E_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `leave_list`
 --
 ALTER TABLE `leave_list`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
