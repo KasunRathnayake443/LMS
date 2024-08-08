@@ -53,6 +53,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <div class="d-flex">
@@ -133,7 +134,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
                 <thead>
                     <tr>
                         <th>Employee Name</th>
-                        <th>Leave Type</th>
+                        <th>Leave Type</th> 
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Status</th>
