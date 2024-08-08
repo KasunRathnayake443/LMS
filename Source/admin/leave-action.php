@@ -9,8 +9,9 @@ if (!isset($_SESSION['email'])) {
     </script>";
     exit;
 }
+
 $A_id = $_SESSION['A_id'];
-$A_name =$_SESSION['A_name'];
+$A_name = $_SESSION['A_name'];
 $admin_email = $_SESSION['email'];
 $leave_id = $_GET['leave_id'];
 
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $admin_remark = $_POST['admin_remark'];
     $status = $_POST['status'];
 
-    $update_stml = $conn->prepare("UPDATE leave_list SET a_remark = ?, Status = ?, A_id =? WHERE leave_id = ?");
-    $update_stml->bind_param("ssss", $admin_remark, $status, $leave_id,$A_id);
+    $update_stml = $conn->prepare("UPDATE leave_list SET a_remark = ?, Status = ?, A_id = ? WHERE leave_id = ?");
+    $update_stml->bind_param("ssii", $admin_remark, $status, $A_id, $leave_id);
 
     if ($update_stml->execute()) {
         echo "<script>

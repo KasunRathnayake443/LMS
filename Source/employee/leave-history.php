@@ -12,7 +12,7 @@ if (!isset($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
-$stml = $conn->prepare("SELECT leave_id, leave_type, Start, End, Status, Comment FROM leave_list WHERE E_id = ? ORDER BY CASE Status WHEN 'Pending' THEN 1 WHEN 'Approved' THEN 2 ELSE 3 END");
+$stml = $conn->prepare("SELECT leave_id, leave_type, Start, End, Status, Comment, a_remark FROM leave_list WHERE E_id = ? ORDER BY CASE Status WHEN 'Pending' THEN 1 WHEN 'Approved' THEN 2 ELSE 3 END");
 $stml->bind_param("s", $id);
 $stml->execute();
 $result = $stml->get_result();
@@ -78,6 +78,7 @@ $result = $stml->get_result();
                         <th>End Date</th>
                         <th>Status</th>
                         <th>Reason</th>
+                        <th>Admin Remark</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -98,6 +99,7 @@ $result = $stml->get_result();
                             }
                         ?></td>
                         <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        <td><?php echo htmlspecialchars($row['a_remark']); ?></td>
                         <td>
                             <?php if ($row['Status'] == 'Pending'): ?>
                                 <a href="edit-leave.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>"><i class="fas fa-edit"></i></a>

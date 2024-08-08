@@ -39,8 +39,11 @@ $Approved_count = $Approved_result->fetch_assoc()['count'];
 $pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
 $pending_result = $conn->query($pendig_query);
 
-$pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
-$pending_result = $conn->query($pendig_query);
+$approved_query = "SELECT * FROM leave_list where Status = 'Approved'";
+$approved_result = $conn->query($approved_query);
+
+$declined_query = "SELECT * FROM leave_list where Status = 'Declined'";
+$declined_result = $conn->query($declined_query);
 ?>
 
 <!DOCTYPE html>
@@ -110,11 +113,13 @@ $pending_result = $conn->query($pendig_query);
             </div>    
         </div>
 
-        <div class="container mt-4">
-            <h2 class="text-secondary">Pending Leave Requests</h2>
+    <div class="container mt-4">
+            
+        <h2 class="text-secondary">Pending Leave Requests</h2>
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Employee Name</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -126,19 +131,116 @@ $pending_result = $conn->query($pendig_query);
                 <tbody>
                     <?php while ($row = $pending_result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['E_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
                         <td><?php echo htmlspecialchars($row['End']); ?></td>
-                        <td><?php 
-                            echo htmlspecialchars($row['Status']); 
-                            if ($row['Status'] == 'Pending') {
-                                echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
-                            }
-                        ?></td>
-                        <td><?php echo htmlspecialchars($row['Comment']); ?></td>
                         <td>
-                           
-                                <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>"><i class="fas fa-edit"></i></a>                         
+                            <?php 
+                                echo htmlspecialchars($row['Status']); 
+                                if ($row['Status'] == 'Pending') {
+                                    echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                                } elseif ($row['Status'] == 'Approved') {
+                                    echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
+                                } elseif ($row['Status'] == 'Declined') {
+                                    echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        
+                        <td>
+                        <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" > <i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+
+            <h2 class="text-secondary">Approved Leave Requests</h2>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                        <th>Admin Id</th>
+                        <th>Admin Remark</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $approved_result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['E_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Start']); ?></td>
+                        <td><?php echo htmlspecialchars($row['End']); ?></td>
+                        <td>
+                            <?php 
+                                echo htmlspecialchars($row['Status']); 
+                                if ($row['Status'] == 'Pending') {
+                                    echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                                } elseif ($row['Status'] == 'Approved') {
+                                    echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
+                                } elseif ($row['Status'] == 'Declined') {
+                                    echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        <td><?php echo htmlspecialchars($row['A_id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['a_remark']); ?></td>
+                        <td>
+                        <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" > <i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+
+            <h2 class="text-secondary">Declined Leave Requests</h2>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                        <th>Admin Id</th>
+                        <th>Admin Remark</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $declined_result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['E_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Start']); ?></td>
+                        <td><?php echo htmlspecialchars($row['End']); ?></td>
+                        <td>
+                            <?php 
+                                echo htmlspecialchars($row['Status']); 
+                                if ($row['Status'] == 'Pending') {
+                                    echo '<i style="color: orange; margin-left: 24px;" class="fas fa-hourglass-start status-icon status-pending"></i>';
+                                } elseif ($row['Status'] == 'Approved') {
+                                    echo '<i style="color: green; margin-left: 10px;" class="fas fa-check-circle status-icon status-approved"></i>';
+                                } elseif ($row['Status'] == 'Declined') {
+                                    echo '<i style="color: red; margin-left: 18px;" class="fas fa-times-circle status-icon status-declined"></i>';
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        <td><?php echo htmlspecialchars($row['A_id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['a_remark']); ?></td>
+                        <td>
+                        <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" > <i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     <?php endwhile; ?>

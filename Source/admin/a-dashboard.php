@@ -123,6 +123,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
                         <th>End Date</th>
                         <th>Status</th>
                         <th>Reason</th>
+                        <th>Admin Remark</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -146,6 +147,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
                             ?>
                         </td>
                         <td><?php echo htmlspecialchars($row['Comment']); ?></td>
+                        <td><?php echo htmlspecialchars($row['a_remark']); ?></td>
                         <td>
                         <a href="leave-action.php?leave_id=<?php echo htmlspecialchars($row['leave_id']); ?>" > <i class="fas fa-edit"></i></a>
                         </td>
@@ -164,5 +166,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
 </html>
 
 <?php
+$_SESSION['A_name'] = $admin_name;
+$_SESSION['A_id'] = $admin_id;
 $conn->close();
 ?>
