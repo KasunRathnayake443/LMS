@@ -1,4 +1,19 @@
-Database name = lms
+**Instruction**
+
+Create a Database named lms using xampp phpmyadmin.
+import lms.sql to the database.
+
+Copy and paste LMS folder in to the xampp htdocs folder.
+
+Start xampp Apache and MySQL servers.
+
+http://localhost:8080/LMS/
+This is the default URL to the LMS.  Port number can be changed due to your configurations.
+
+Use below usernames and passwords to log into LMS as a admin or employee.
+Use admin panel to create new admin accounts and employee accounts.
+
+
 
 admin logins 
 
@@ -9,3 +24,6 @@ employee logins
 
 email = test@gmail.com
 password = test123
+
+
+
