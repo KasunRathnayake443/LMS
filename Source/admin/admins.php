@@ -30,6 +30,8 @@ $admin_result = $conn->query($admin_query);
 $admin_query = "SELECT * FROM admin";
 $admin_result = $conn->query($admin_query);
 
+$pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Pending'")->fetch_assoc()['count'];
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +50,12 @@ $admin_result = $conn->query($admin_query);
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
         <a class="nav-link" href="a-dashboard.php"> Dashboard</a>
         <a class="nav-link" href="employees.php"> Employees</a>
-        <a class="nav-link" href="leave-requests.php"> Leave Requests</a>
+        <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
+    Leave Requests
+    <?php if ($pending_leave_requests_count > 0): ?>
+        <span class="badge bg-warning"><?php echo $pending_leave_requests_count; ?></span>
+    <?php endif; ?>
+    </a>
         <a class="nav-link" href="leave-types.php"> Leave Types</a>
         <a class="nav-link" href="departments.php"> Departments</a>
         <a class="nav-link" href="admins.php"> Admins</a>
@@ -56,20 +63,28 @@ $admin_result = $conn->query($admin_query);
     </nav>
     
     <div class="flex-grow-1">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <span class="navbar-text">
-                    Welcome, <?php echo $admin_name; ?>
-                </span>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <span class="navbar-text">
+            Welcome, <?php echo $admin_name; ?>
+        </span>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="leave-requests.php">
+                        Pending Requests 
+                        <?php if ($pending_leave_requests_count > 0): ?>
+                            <span class="badge bg-warning"><?php echo $pending_leave_requests_count; ?></span>
+                        <?php endif; ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
         <div class="container mt-4">
             <div class="row">
