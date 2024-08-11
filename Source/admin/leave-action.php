@@ -25,9 +25,10 @@ $stml->close();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $admin_remark = $_POST['admin_remark'];
     $status = $_POST['status'];
+    $seen = 0;
 
-    $update_stml = $conn->prepare("UPDATE leave_list SET a_remark = ?, Status = ?, A_id = ? WHERE leave_id = ?");
-    $update_stml->bind_param("ssii", $admin_remark, $status, $A_id, $leave_id);
+    $update_stml = $conn->prepare("UPDATE leave_list SET a_remark = ?, seen = ?, Status = ?, A_id = ? WHERE leave_id = ?");
+    $update_stml->bind_param("sssii", $admin_remark,$seen, $status, $A_id, $leave_id);
 
     if ($update_stml->execute()) {
         echo "<script>

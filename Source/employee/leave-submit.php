@@ -18,9 +18,10 @@ $from_date = $_POST['leaveStart'];
 $to_date = $_POST['leaveEnd'];
 $reason = $_POST['leaveReason'];
 $status = "Pending";
+$seen = 1;
 
-$stml = $conn->prepare("INSERT INTO leave_list (E_name, E_id, leave_type, Start, End, Status, Comment) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stml->bind_param("sssssss", $name, $id, $leave_type, $from_date, $to_date, $status, $reason);
+$stml = $conn->prepare("INSERT INTO leave_list (E_name, E_id, leave_type, Start, End, Status, Comment , seen) VALUES (?, ?, ?, ?, ?, ?, ?,?)");
+$stml->bind_param("sssssss", $name, $id, $leave_type, $from_date, $to_date, $status, $reason, $seen);
 $stml->execute();
 $stml->close();
 

@@ -61,12 +61,12 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
         <a class="nav-link" href="a-dashboard.php">Dashboard</a>
         <a class="nav-link" href="employees.php">Employees</a>
-        <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
-    Leave Requests
-    <?php if ($pending_leave_requests_count > 0): ?>
+        <?php if ($pending_leave_requests_count > 0): ?>
+    <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
+        Leave Requests
         <span class="badge bg-warning"><?php echo $pending_leave_requests_count; ?></span>
-    <?php endif; ?>
-</a>
+    </a>
+<?php endif; ?>
         <a class="nav-link" href="leave-types.php">Leave Types</a>
         <a class="nav-link" href="departments.php">Departments</a>
         <a class="nav-link" href="admins.php">Admins</a>

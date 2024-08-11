@@ -29,6 +29,16 @@ if (!$employee) {
 $departments_query = "SELECT d_name FROM departments";
 $departments_result = $conn->query($departments_query);
 
+
+
+$notification_query = "SELECT COUNT(*) as count FROM leave_list WHERE E_id = ? AND seen = 0";
+$notification_stml = $conn->prepare($notification_query);
+$notification_stml->bind_param("s", $id);
+$notification_stml->execute();
+$notification_result = $notification_stml->get_result();
+$notification_row = $notification_result->fetch_assoc();
+$notification_count = $notification_row['count'];
+$notification_stml->close();
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +68,12 @@ $departments_result = $conn->query($departments_query);
                 </span>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="notification.php">
+                        Notifications 
+                        <?php if ($notification_count > 0): ?>
+                            <span class="badge bg-warning"><?php echo $notification_count; ?></span>
+                        <?php endif; ?>
+                    </a>
                         <li class="nav-item">
                             <a class="nav-link" href="edit-profile.php">
                                 <img src="../img/profile_icon.png" alt="Profile Icon" style="width: 30px; height: 30px;"> Edit Profile
