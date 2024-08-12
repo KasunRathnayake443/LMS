@@ -11,6 +11,8 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['name'])) {
     exit;
 }
 
+date_default_timezone_set('Asia/Kolkata');
+
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $leave_type = $_POST['leaveType'];

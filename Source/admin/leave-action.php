@@ -80,7 +80,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <span class="navbar-text">
-            Welcome, <?php echo $admin_name; ?>
+            Welcome, <?php echo $A_name; ?>
         </span>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto">
