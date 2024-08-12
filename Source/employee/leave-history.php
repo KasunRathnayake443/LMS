@@ -12,7 +12,7 @@ if (!isset($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
-$stml = $conn->prepare("SELECT leave_id, leave_type, Start, End, Status, Comment, a_remark FROM leave_list WHERE E_id = ? ORDER BY CASE Status WHEN 'Pending' THEN 1 WHEN 'Approved' THEN 2 ELSE 3 END");
+$stml = $conn->prepare("SELECT leave_id, Leave_type, Start, End, Status, Comment, a_remark, submission_date FROM leave_list WHERE E_id = ? ORDER BY submission_date DESC");
 $stml->bind_param("s", $id);
 $stml->execute();
 $result = $stml->get_result();
@@ -91,6 +91,7 @@ $notification_stml->close();
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Submitted Date</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -98,12 +99,14 @@ $notification_stml->close();
                         <th>Reason</th>
                         <th>Admin Remark</th>
                         <th>Actions</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['leave_type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
+                        <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
                         <td><?php echo htmlspecialchars($row['End']); ?></td>
                         <td><?php 

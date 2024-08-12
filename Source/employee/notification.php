@@ -93,6 +93,7 @@ $status_changed_result = $status_changed_stml->get_result();
                 <table class="table table-bordered mt-4">
                     <thead>
                         <tr>
+                            <th>Submitted Date</th>
                             <th>Leave Type</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -112,7 +113,8 @@ $status_changed_result = $status_changed_stml->get_result();
             <?php elseif ($row['Status'] == 'Declined'): ?>
                 background-color: lightcoral;
             <?php endif; ?>
-        ">
+        ">  
+            <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
             <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
             <td><?php echo htmlspecialchars($row['Start']); ?></td>
             <td><?php echo htmlspecialchars($row['End']); ?></td>

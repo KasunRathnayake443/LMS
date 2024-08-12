@@ -32,15 +32,7 @@ $employees_count = $conn->query("SELECT COUNT(*) as count FROM employees")->fetc
 $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leave_list WHERE Status = 'Pending'")->fetch_assoc()['count'];
 
 
-$recent_leave_requests_query = "
-    SELECT * 
-    FROM leave_list  
-    ORDER BY CASE Status 
-        WHEN 'Pending' THEN 1 
-        WHEN 'Approved' THEN 2 
-        ELSE 3 
-    END
-";
+$recent_leave_requests_query = "SELECT * FROM leave_list  ORDER BY  submission_date DESC";
 $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
 ?>
 
@@ -133,6 +125,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Submitted Date</th>
                         <th>Employee Name</th>
                         <th>Leave Type</th> 
                         <th>Start Date</th>
@@ -146,6 +139,7 @@ $recent_leave_requests_result = $conn->query($recent_leave_requests_query);
                 <tbody>
                     <?php while ($row = $recent_leave_requests_result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
                         <td><?php echo htmlspecialchars($row['E_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
