@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2024 at 06:09 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Aug 12, 2024 at 09:46 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -104,19 +104,24 @@ CREATE TABLE `leave_list` (
   `Status` varchar(100) NOT NULL,
   `Comment` varchar(1000) NOT NULL,
   `A_id` int(11) NOT NULL,
-  `a_remark` varchar(1000) NOT NULL
+  `a_remark` varchar(1000) NOT NULL,
+  `seen` int(11) NOT NULL,
+  `submission_date` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `leave_list`
 --
 
-INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `End`, `Status`, `Comment`, `A_id`, `a_remark`) VALUES
-(1, 1, 'Kasun Rathanayake', 'Sick leave', '2024-08-16', '2024-08-16', 'Pending', 'test', 1, 'change decline to pending'),
-(5, 11, 'abc', 'Casual leave', '2024-08-21', '2024-08-30', 'Declined', '22222', 3, 'change pending to declined'),
-(8, 14, 'Test Employee', 'Bereavement leave', '2024-08-24', '2024-08-10', 'Approved', 'test', 3, 'change pending to approved'),
-(7, 17, 'kasun', 'Unpaid leave', '2024-08-10', '2024-08-20', 'Approved', 'new test', 1, 'approved'),
-(4, 18, 'Aron Black', 'Unpaid leave', '2024-08-09', '2024-08-28', 'Pending', 'test employee requests', 0, '');
+INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `End`, `Status`, `Comment`, `A_id`, `a_remark`, `seen`, `submission_date`) VALUES
+(1, 1, 'Kasun Rathanayake', 'Sick leave', '2024-08-16', '2024-08-16', 'Declined', 'test', 0, 'change decline to pending', 0, '2024-08-12 12:09:55'),
+(5, 11, 'abc', 'Casual leave', '2024-08-21', '2024-08-30', 'Declined', '22222', 3, 'change pending to declined', 0, '2024-08-12 12:09:55'),
+(8, 14, 'Test Employee', 'Bereavement leave', '2024-08-24', '2024-08-10', 'Approved', 'test', 3, 'change pending to approved', 0, '2024-08-12 12:09:55'),
+(7, 17, 'kasun', 'Unpaid leave', '2024-08-10', '2024-08-20', 'Approved', 'new test', 1, 'approved', 1, '2024-08-12 12:09:55'),
+(4, 18, 'Aron Black', 'Unpaid leave', '2024-08-09', '2024-08-28', 'Approved', 'test employee requests', 0, 'testing the sort by', 0, '2024-08-12 12:09:55'),
+(7, 19, 'kasun', 'Bereavement leave', '2024-08-13', '2024-08-15', 'Approved', 'test after employee notifications', 0, 'ok', 1, '2024-08-12 12:09:55'),
+(7, 20, 'kasun', 'Sick leave', '2024-08-14', '2024-08-22', 'Approved', 'Test submission date and time', 0, 'testing sort', 1, '2024-08-12 08:43:35'),
+(7, 21, 'kasun', 'Bereavement leave', '2024-08-16', '2024-08-18', 'Approved', 'time test', 0, 'testing time', 1, '2024-08-12 08:45:32');
 
 -- --------------------------------------------------------
 
@@ -201,7 +206,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `leave_list`
 --
 ALTER TABLE `leave_list`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
