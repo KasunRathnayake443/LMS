@@ -36,13 +36,13 @@ $Approved_result = $conn->query($Approved_query);
 $Approved_count = $Approved_result->fetch_assoc()['count'];
 
 
-$pendig_query = "SELECT * FROM leave_list where Status = 'Pending'";
+$pendig_query = "SELECT * FROM leave_list where Status = 'Pending' ORDER BY submission_date DESC";
 $pending_result = $conn->query($pendig_query);
 
-$approved_query = "SELECT * FROM leave_list where Status = 'Approved'";
+$approved_query = "SELECT * FROM leave_list where Status = 'Approved' ORDER BY submission_date DESC";
 $approved_result = $conn->query($approved_query);
 
-$declined_query = "SELECT * FROM leave_list where Status = 'Declined'";
+$declined_query = "SELECT * FROM leave_list where Status = 'Declined' ORDER BY submission_date DESC";
 $declined_result = $conn->query($declined_query);
 ?>
 
@@ -134,6 +134,7 @@ $declined_result = $conn->query($declined_query);
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Submitted Date</th>
                         <th>Employee Name</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
@@ -146,6 +147,7 @@ $declined_result = $conn->query($declined_query);
                 <tbody>
                     <?php while ($row = $pending_result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
                         <td><?php echo htmlspecialchars($row['E_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
@@ -176,6 +178,7 @@ $declined_result = $conn->query($declined_query);
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Submitted Date</th>
                         <th>Employee Name</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
@@ -190,6 +193,7 @@ $declined_result = $conn->query($declined_query);
                 <tbody>
                     <?php while ($row = $approved_result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
                         <td><?php echo htmlspecialchars($row['E_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
@@ -221,6 +225,7 @@ $declined_result = $conn->query($declined_query);
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
+                        <th>Submitted Date</th>
                         <th>Employee Name</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
@@ -235,6 +240,7 @@ $declined_result = $conn->query($declined_query);
                 <tbody>
                     <?php while ($row = $declined_result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['submission_date']); ?></td>
                         <td><?php echo htmlspecialchars($row['E_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['Leave_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['Start']); ?></td>
