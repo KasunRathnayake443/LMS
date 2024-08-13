@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/a-login.css">
     <script src="../js/load.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/icon.png">
 </head>
 <body>
     <div class="container" id="content">
