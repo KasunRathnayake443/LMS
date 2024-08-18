@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2024 at 09:46 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Aug 18, 2024 at 07:35 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -121,7 +121,9 @@ INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `
 (4, 18, 'Aron Black', 'Unpaid leave', '2024-08-09', '2024-08-28', 'Approved', 'test employee requests', 0, 'testing the sort by', 0, '2024-08-12 12:09:55'),
 (7, 19, 'kasun', 'Bereavement leave', '2024-08-13', '2024-08-15', 'Approved', 'test after employee notifications', 0, 'ok', 1, '2024-08-12 12:09:55'),
 (7, 20, 'kasun', 'Sick leave', '2024-08-14', '2024-08-22', 'Approved', 'Test submission date and time', 0, 'testing sort', 1, '2024-08-12 08:43:35'),
-(7, 21, 'kasun', 'Bereavement leave', '2024-08-16', '2024-08-18', 'Approved', 'time test', 0, 'testing time', 1, '2024-08-12 08:45:32');
+(7, 21, 'kasun', 'Bereavement leave', '2024-08-16', '2024-08-18', 'Approved', 'time test', 0, 'testing time', 1, '2024-08-12 08:45:32'),
+(7, 22, 'kasun', 'Sick leave', '2024-08-21', '2024-08-17', 'Declined', 'time test', 0, 'time test', 1, '2024-08-12 16:16:03'),
+(7, 23, 'kasun', 'Casual leave', '2024-08-15', '2024-08-17', 'Approved', 'submission time test', 0, 'time test', 1, '2024-08-12 19:49:33');
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `leave_list`
 --
 ALTER TABLE `leave_list`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
