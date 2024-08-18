@@ -49,6 +49,7 @@ $notification_stml->close();
     <title>Edit Profile - Leave Management System</title>
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/e-dashboard.css">
+    <link rel="icon" type="image/x-icon" href="../img/icon.png">
 </head>
 <body>
 <div class="d-flex">
