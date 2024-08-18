@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2024 at 07:35 PM
+-- Generation Time: Aug 18, 2024 at 07:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,8 +39,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`A_id`, `A_email`, `A_name`, `A_password`) VALUES
-(1, 'admin@gmail.com', 'Test Admin', 'admin'),
-(3, 'admin2@gmail.com', 'admin test2', 'admin');
+(1, 'admin@gmail.com', 'admin', 'admin'),
+(3, 'admin2@gmail.com', 'admin test2', 'admin'),
+(5, 'test@gmail.com', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,8 @@ INSERT INTO `departments` (`d_name`, `D_id`, `D_description`) VALUES
 ('Finance', 1, ''),
 ('Marketing', 2, ''),
 ('HR', 5, ''),
-('IT', 8, '');
+('IT', 8, ''),
+('test', 10, '');
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,8 @@ INSERT INTO `employees` (`E_id`, `E_name`, `E_email`, `E_department`, `E_passwor
 (4, 'Aron Black', 'black@gmail.com', 'Finance', 'black123'),
 (5, 'abc', 'abc@gmail.com', 'Marketing', '123'),
 (7, 'kasun', 'kasun@gmail.com', 'Marketing', '123'),
-(8, 'Test Employee', 'test@gmail.com', 'Marketing', 'test123');
+(8, 'Test Employee', 'test@gmail.com', 'Marketing', 'test123'),
+(9, 'new ', 'new@gmail.com', 'HR', 'new');
 
 -- --------------------------------------------------------
 
@@ -123,7 +126,8 @@ INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `
 (7, 20, 'kasun', 'Sick leave', '2024-08-14', '2024-08-22', 'Approved', 'Test submission date and time', 0, 'testing sort', 1, '2024-08-12 08:43:35'),
 (7, 21, 'kasun', 'Bereavement leave', '2024-08-16', '2024-08-18', 'Approved', 'time test', 0, 'testing time', 1, '2024-08-12 08:45:32'),
 (7, 22, 'kasun', 'Sick leave', '2024-08-21', '2024-08-17', 'Declined', 'time test', 0, 'time test', 1, '2024-08-12 16:16:03'),
-(7, 23, 'kasun', 'Casual leave', '2024-08-15', '2024-08-17', 'Approved', 'submission time test', 0, 'time test', 1, '2024-08-12 19:49:33');
+(7, 23, 'kasun', 'Casual leave', '2024-08-15', '2024-08-17', 'Approved', 'submission time test', 0, 'time test', 1, '2024-08-12 19:49:33'),
+(9, 24, 'new ', 'test', '2024-08-19', '2024-08-31', 'Declined', 'test test', 0, 'noo test', 1, '2024-08-18 23:09:46');
 
 -- --------------------------------------------------------
 
@@ -146,7 +150,8 @@ INSERT INTO `leave_types` (`leave_name`, `description`, `id`) VALUES
 ('Casual leave', 'Casual leave, also known as unplanned leave, is a mandatory leave that employees can take for personal reasons.', 7),
 ('Unpaid leave', 'Employees may wish to (or need to) take unpaid leave for various reasons should they not have enough paid leave days to use or if unexpected events occur in their personal life. ', 8),
 ('Bereavement leave', 'An employee takes bereavement leave or funeral leave after the death of a loved one (usually a relative or close friend). This would typically be as long as the employee needs to attend the funeral and recover from immediate grief. ', 9),
-('Other Reason', '', 10);
+('Other Reason', '', 10),
+('test', 'test', 13);
 
 --
 -- Indexes for dumped tables
@@ -190,31 +195,31 @@ ALTER TABLE `leave_types`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `A_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `A_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `D_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `D_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `E_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `E_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `leave_list`
 --
 ALTER TABLE `leave_list`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
 --
 ALTER TABLE `leave_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
