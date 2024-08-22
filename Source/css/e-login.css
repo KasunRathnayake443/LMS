@@ -1,16 +1,52 @@
+
 body {
-    background-image: url('../img/background-employee.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-  }
-
-
-#content {
-  opacity: 0;
-  transition: opacity 2s;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
-
-#content.fade-in {
-  opacity: 1;
+.login-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.login-container h1, .login-container h3 {
+    font-weight: 700;
+}
+.login-container h1 {
+    color: #6a11cb;
+}
+.login-container h3 {
+    color: #2575fc;
+}
+.login-container .btn-primary {
+    background: #2575fc;
+    border: none;
+    transition: background 0.3s ease;
+}
+.login-container .btn-primary:hover {
+    background: #1b60d1;
+}
+.login-container .form-footer a {
+    color: #6a11cb;
+    text-decoration: none;
+}
+.login-container .form-footer a:hover {
+    text-decoration: underline;
+}
+.login-container .form-label {
+    font-weight: 600;
+}
+.login-container input[type="email"], .login-container input[type="password"] {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+.login-container .form-check-label {
+    font-size: 0.9rem;
+}
+.form-footer {
+    margin-top: 1.5rem;
 }
