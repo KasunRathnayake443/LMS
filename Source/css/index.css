@@ -12,7 +12,7 @@ body {
 }
 .login-sidebar {
     flex: 1;
-    background: #343a40;
+    background: #007bff;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,13 @@ body {
     justify-content: center;
     text-align: center;
     padding: 20px;
+    animation: slideShow 8s infinite;
+}
+@keyframes slideShow {
+    0% { background-color: #007bff; }
+    33% { background-color: #0056b3; }
+    66% { background-color: #003f7f; }
+    100% { background-color: #007bff; }
 }
 .login-sidebar h1 {
     margin: 0;
