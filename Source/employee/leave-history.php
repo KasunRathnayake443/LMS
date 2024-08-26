@@ -51,8 +51,17 @@ $notification_stml->close();
             margin: 0;
         }
     </style>
+    <link rel="stylesheet" href="../css/spinner.css">
 </head>
 <body>
+
+
+<div id="spinner" class="show">
+<div class="spinner-border text-success" role="status">
+  <span class="sr-only"></span>
+</div>
+</div>
+<script src="../js/spinner.js"></script>
 <div class="d-flex">
     <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
         <a class="navbar-brand" href="#">Leave Management System</a>

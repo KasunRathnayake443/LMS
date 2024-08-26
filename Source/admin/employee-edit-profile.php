@@ -52,11 +52,19 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
-    <style>
-       
-    </style>
+    <link rel="stylesheet" href="../css/spinner.css">
 </head>
 <body>
+
+
+<div id="spinner" class="show">
+    <div class="spinner-border text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<script src="../js/spinner.js"></script>
+
+
 <div class="d-flex">
     <nav class="nav flex-column bg-light p-3" style="width: 300px; height: 100vh;">
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>

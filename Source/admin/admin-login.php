@@ -6,11 +6,18 @@
     <title>Admin Login - LMS</title>
     <link rel="stylesheet" href="../css/a-login.css">
     <link href="../bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-       
-    </style>
+    <link rel="stylesheet" href="../css/spinner.css">
 </head>
 <body>
+
+
+<div id="spinner" class="show">
+<div class="spinner-border text-warning" role="status">
+  <span class="sr-only"></span>
+</div>
+</div>
+<script src="../js/spinner.js"></script>
+
     <a href="../../index.php" class="admin-panel-link">Go to Employee Login</a>
     <div class="login-wrapper">
         <div class="login-sidebar">
