@@ -75,7 +75,7 @@ $declined_result = $conn->query($declined_query);
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
         <a class="nav-link" href="a-dashboard.php"> Dashboard</a>
         <a class="nav-link" href="employees.php"> Employees</a>
-        <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
+        <a class="nav-link d-flex justify-content-between align-items-center active" href="leave-requests.php">
     Leave Requests
     <?php if ($pending_count > 0): ?>
         <span class="badge bg-warning"><?php echo $pending_count; ?></span>

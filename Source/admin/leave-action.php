@@ -57,7 +57,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="icon" type="image/x-icon" href="../img/icon.png">>
+    <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
 </head>
 
@@ -74,7 +74,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
         <a class="nav-link" href="a-dashboard.php">Dashboard</a>
         <a class="nav-link" href="employees.php">Employees</a>
-        <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
+        <a class="nav-link d-flex justify-content-between align-items-center active" href="leave-requests.php">
     Leave Requests
     <?php if ($pending_leave_requests_count > 0): ?>
         <span class="badge bg-warning"><?php echo $pending_leave_requests_count; ?></span>

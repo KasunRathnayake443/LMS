@@ -1,5 +1,5 @@
 #spinner {
-    display: none; /* Initially hidden */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -11,5 +11,9 @@
     z-index: 1000;
 }
 #spinner.show {
-    display: flex; /* Show spinner when .show is added */
+    display: flex; 
+}
+
+.active{
+    background-color: #ebebeb;
 }
