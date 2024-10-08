@@ -72,7 +72,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     </a>
         <a class="nav-link" href="leave-types.php"> Leave Types</a>
         <a class="nav-link" href="departments.php"> Departments</a>
-        <a class="nav-link" href="admins.php"> Admins</a>
+        <a class="nav-link active" href="admins.php"> Admins</a>
         <a class="nav-link" href="logout.php" onclick="return confirmLogout();">Logout</a>
     </nav>
     

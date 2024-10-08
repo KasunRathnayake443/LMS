@@ -60,7 +60,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <nav class="nav flex-column bg-light p-3" style="width: 300px; min-height: 100vh;">
         <a class="navbar-brand" href="a-dashboard.php">Leave Management System</a>
         <a class="nav-link" href="a-dashboard.php"> Dashboard</a>
-        <a class="nav-link" href="employees.php"> Employees</a>
+        <a class="nav-link active" href="employees.php"> Employees</a>
         <a class="nav-link d-flex justify-content-between align-items-center" href="leave-requests.php">
     Leave Requests
     <?php if ($pending_leave_requests_count > 0): ?>
