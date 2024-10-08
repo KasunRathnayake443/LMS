@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Externally rewrite URL to hide /source/admin in the browser
+
+RewriteRule ^admin-login$ /LMS/source/admin/admin-login.php [L,QSA]
+
+# Rewrite other admin pages (you can add more as needed)
+
+RewriteRule ^admin-dashboard$ /LMS/source/admin/admin-dashboard.php [L,QSA]
+
+# Prevent direct access to the /source/ directory
+
+RewriteRule ^source/ - [F,L]
+
+# Prevent directory listing
+
+Options -Indexes

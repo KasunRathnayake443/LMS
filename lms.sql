@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2024 at 04:45 PM
+-- Generation Time: Sep 14, 2024 at 03:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -87,7 +87,6 @@ CREATE TABLE `employees` (
 INSERT INTO `employees` (`E_id`, `E_name`, `E_email`, `E_department`, `E_password`) VALUES
 (4, 'Aron Black', 'black@gmail.com', 'Finance', 'black123'),
 (5, 'abc', 'abc@gmail.com', 'Marketing', '123'),
-(7, 'kasun', 'kasun@gmail.com', 'Marketing', '123'),
 (8, 'Test Employee', 'test@gmail.com', 'Marketing', 'test123'),
 (9, 'new ', 'new@gmail.com', 'HR', 'new');
 
@@ -117,16 +116,9 @@ CREATE TABLE `leave_list` (
 --
 
 INSERT INTO `leave_list` (`E_id`, `leave_id`, `E_name`, `Leave_type`, `Start`, `End`, `Status`, `Comment`, `A_id`, `a_remark`, `seen`, `submission_date`) VALUES
-(1, 1, 'Kasun Rathanayake', 'Sick leave', '2024-08-16', '2024-08-16', 'Declined', 'test', 0, 'change decline to pending', 0, '2024-08-12 12:09:55'),
 (5, 11, 'abc', 'Casual leave', '2024-08-21', '2024-08-30', 'Declined', '22222', 3, 'change pending to declined', 0, '2024-08-12 12:09:55'),
 (8, 14, 'Test Employee', 'Bereavement leave', '2024-08-24', '2024-08-10', 'Approved', 'test', 3, 'change pending to approved', 0, '2024-08-12 12:09:55'),
-(7, 17, 'kasun', 'Unpaid leave', '2024-08-10', '2024-08-20', 'Approved', 'new test', 1, 'approved', 1, '2024-08-12 12:09:55'),
 (4, 18, 'Aron Black', 'Unpaid leave', '2024-08-09', '2024-08-28', 'Approved', 'test employee requests', 0, 'testing the sort by', 0, '2024-08-12 12:09:55'),
-(7, 19, 'kasun', 'Bereavement leave', '2024-08-13', '2024-08-15', 'Approved', 'test after employee notifications', 0, 'ok', 1, '2024-08-12 12:09:55'),
-(7, 20, 'kasun', 'Sick leave', '2024-08-14', '2024-08-22', 'Approved', 'Test submission date and time', 0, 'testing sort', 1, '2024-08-12 08:43:35'),
-(7, 21, 'kasun', 'Bereavement leave', '2024-08-16', '2024-08-18', 'Approved', 'time test', 0, 'testing time', 1, '2024-08-12 08:45:32'),
-(7, 22, 'kasun', 'Sick leave', '2024-08-21', '2024-08-17', 'Declined', 'time test', 0, 'time test', 1, '2024-08-12 16:16:03'),
-(7, 23, 'kasun', 'Casual leave', '2024-08-15', '2024-08-17', 'Approved', 'submission time test', 0, 'time test', 1, '2024-08-12 19:49:33'),
 (9, 24, 'new ', 'test', '2024-08-19', '2024-08-31', 'Declined', 'test test', 0, 'noo test', 1, '2024-08-18 23:09:46');
 
 -- --------------------------------------------------------
