@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/a-login.css">
     <link href="../bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/spinner.css">
+    <Link rel="stylesheet" href="../css/alerts.css">
 </head>
 <body>
 
@@ -29,6 +30,10 @@
         <div class="login-form-container">
             <div class="login-form">
                 <h2 class="text-center">Admin Login</h2>
+                <div class="alert" id="alertBox">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                     Wrong Username or Password.
+                </div>
                 <form action="admin-login-code.php" method="post">
                     <div class="form-group">
                         <label for="email" class="form-label">Email address</label>
@@ -47,7 +52,7 @@
         </div>
     </div>
 
-    
+    <script src="../js/notifications1.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

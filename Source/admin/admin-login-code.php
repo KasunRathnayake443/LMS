@@ -25,7 +25,7 @@ $stml = $conn->prepare("select A_password from Admin where A_email = ? ");
     { echo "<script> document.location='A-dashboard.php'</script>"; }
 
     else { echo"<script>
-        alert('Wrong Username or Password'); document.location='admin-login.php';</script>";}
+         document.location='admin-login.php?notifications1=1';</script>";}
 
         session_start();
         $_SESSION['email'] = $email;

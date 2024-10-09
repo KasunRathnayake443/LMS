@@ -132,7 +132,7 @@ $notification_stml->close();
                                     <textarea class="form-control" id="leaveReason" name="leaveReason" rows="3" required></textarea>
                                 </div>
                             </div>
-                            <div class="success" id="alertBox">
+                            <div class="success2" id="alertBox">
                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                                 Leave application submitted successfully.
                             </div>

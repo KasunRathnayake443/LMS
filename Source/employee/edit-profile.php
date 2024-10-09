@@ -127,11 +127,11 @@ $notification_stml->close();
                     <input type="password" class="form-control" id="password" name="password">
                     <small class="form-text text-muted">Leave blank to keep the current password.</small>
                 </div>
-                <div class="success" id="alertBox">
+                <div class="success2" id="alertBox">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                         Profile updated successfully.
                 </div>
-                <div class="nothing" id="alertBox2">
+                <div class="nothing2" id="alertBox2">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                         No changes made to the profile.
                 </div>

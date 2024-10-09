@@ -149,7 +149,7 @@ $notification_stml->close();
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     Leave application updated successfully.
                 </div>
-                <div class="alert" id="alertBox2">
+                <div class="alert2" id="alertBox2">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     Leave request deleted successfully.
                 </div>
