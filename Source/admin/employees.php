@@ -45,9 +45,31 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <link rel="stylesheet" href="../css/main.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
+    <link rel="stylesheet" href="../css/alerts.css">
 </head>
 <body>
 
+                        <div class="success2" id="alertBox">
+                            <i class="fa fa-check fa-2x"></i> 
+                            <span class="message-text">New Employee Added successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="success2" id="alertBox2">
+                            <i class="fa fa-check fa-2x"></i> 
+                            <span class="message-text">Employee Profile Updated successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                            <div class="nothing2" id="alertBox3">
+                            <i class="fa fa-info-circle fa-2x"></i> 
+                            <span class="message-text">No changes made to the profile.</span>
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        </div>
+                            <div class="alert2" id="alertBox4">
+                            <i class="fa fa-trash fa-2x"></i> 
+                            <span class="message-text">Employee Profile Deleted Successfully.</span>
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
 
 <div id="spinner" class="show">
 <div class="spinner-border text-warning" role="status">
@@ -133,6 +155,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
                             <input type="password" class="form-control" id="employeePassword" name="employeePassword" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Add Employee</button>
+
                     </form>
                 </div>
             </div>
@@ -169,6 +192,8 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     </div>
 </div>
 
+                
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 

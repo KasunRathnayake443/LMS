@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stml->execute()) {
         echo "<script>
-            alert('Leave Type added successfully.');
-            window.location.href='leave-types.php';
+          
+            window.location.href='leave-types.php?notifications1=1';
         </script>";
     } else {
         echo "<script>

@@ -1,9 +1,8 @@
-
 .alert {
   padding: 20px;
   background-color: #f44336;
   color: white;
-  display: none; 
+  display: none;
 }
 
 .closebtn {
@@ -25,51 +24,84 @@
   padding: 20px;
   background-color: green;
   color: white;
-  display: none; 
+  display: none;
 }
 
 .nothing {
   padding: 20px;
-  background-color: #D3D0C9;
+  background-color: #d3d0c9;
   color: white;
-  display: none; 
+  display: none;
 }
 
 .success2 {
-  padding: 20px;
-  background-color: green;
+  padding: 15px 30px;
+  background-color: #28a745;
   color: white;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%;
-  text-align: center; 
-  z-index: 9999; 
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 450px;
+  max-width: 90%;
+  text-align: left;
+  z-index: 9999;
   display: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.success2 i {
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .alert2 {
-  padding: 20px;
-  background-color: #f44336;
+  padding: 15px 30px;
+  background-color: rgb(227, 39, 39);
   color: white;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%;
-  text-align: center; 
-  z-index: 9999; 
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 450px;
+  max-width: 90%;
+  text-align: left;
+  z-index: 9999;
   display: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.alert2 i {
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .nothing2 {
-  padding: 20px;
-  background-color: #807f7e;
+  padding: 15px 30px;
+  background-color: rgb(121, 115, 115);
   color: white;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%;
-  text-align: center; 
-  z-index: 9999; 
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 450px;
+  max-width: 90%;
+  text-align: left;
+  z-index: 9999;
   display: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.nothing2 i {
+  margin-right: 10px;
+  vertical-align: middle;
 }

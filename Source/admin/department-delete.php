@@ -18,8 +18,8 @@ $stml->execute();
 
 if ($stml->affected_rows > 0) {
     echo "<script>
-        alert('Department deleted successfully.');
-        window.location.href='departments.php';
+  
+        window.location.href='departments.php?notifications2=1';
     </script>";
 } else {
     echo "<script>

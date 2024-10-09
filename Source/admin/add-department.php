@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stml->execute()) {
         echo "<script>
-            alert('Department added successfully.');
-            window.location.href='Departments.php';
+     
+            window.location.href='Departments.php?notifications1=1';
         </script>";
     } else {
         echo "<script>

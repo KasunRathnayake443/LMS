@@ -18,8 +18,8 @@ $stml->execute();
 
 if ($stml->affected_rows > 0) {
     echo "<script>
-        alert('Leave Type deleted successfully.');
-        window.location.href='Leave-types.php';
+       
+        window.location.href='Leave-types.php?notifications2=1';
     </script>";
 } else {
     echo "<script>

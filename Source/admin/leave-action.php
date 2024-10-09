@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($update_stml->execute()) {
         echo "<script>
-            alert('Leave request updated successfully.');
-            window.location.href='leave-requests.php';
+            
+            window.location.href='leave-requests.php?notifications1=1';
         </script>";
     } else {
         echo "<script>

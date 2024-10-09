@@ -43,6 +43,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <link rel="stylesheet" href="../css/main.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
+    <link rel="stylesheet" href="../css/alerts.css">
 </head>
 <body>
 <div id="spinner" class="show">
@@ -143,7 +144,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
                         
                             
                             <td>
-                                <a href="leave-edit.php?id=<?php echo htmlspecialchars($row['id']); ?>" ><i class="fas fa-edit"></i></a>
+                                
                                 <a href="leave-delete.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this Leave Type?')"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
@@ -155,6 +156,18 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     </div>
 </div>
 
+                        <div class="success2" id="alertBox">
+                            <i class="fa fa-check fa-2x"></i> 
+                            <span class="message-text">New Leave Type Added successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="alert2" id="alertBox2">
+                            <i class="fa fa-trash fa-2x"></i> 
+                            <span class="message-text">Leave Type Deleted successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 

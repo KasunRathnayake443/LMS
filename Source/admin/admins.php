@@ -45,7 +45,7 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
-
+    <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../css/spinner.css">
 </head>
 <body>
@@ -163,6 +163,29 @@ $pending_leave_requests_count = $conn->query("SELECT COUNT(*) as count FROM leav
     </div>
 </div>
 
+
+                        <div class="success2" id="alertBox">
+                            <i class="fa fa-check fa-2x"></i> 
+                            <span class="message-text">New Admin Profile Added successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="alert2" id="alertBox2">
+                            <i class="fa fa-trash fa-2x"></i> 
+                            <span class="message-text">Admin Profile Deleted successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="success2" id="alertBox3">
+                            <i class="fa fa-check fa-2x"></i> 
+                            <span class="message-text">Admin Profile Updated successfully.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="Nothing2" id="alertBox4">
+                            <i class="fa fa-info-circle fa-2x"></i> 
+                            <span class="message-text">No Changes Has Done to the Admin profile.</span>                            
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                       
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 

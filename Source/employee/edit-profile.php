@@ -52,6 +52,7 @@ $notification_stml->close();
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
     <link rel="stylesheet" href="../css/alerts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -128,13 +129,16 @@ $notification_stml->close();
                     <small class="form-text text-muted">Leave blank to keep the current password.</small>
                 </div>
                 <div class="success2" id="alertBox">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                        Profile updated successfully.
-                </div>
-                <div class="nothing2" id="alertBox2">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                        No changes made to the profile.
-                </div>
+                        <i class="fa fa-check fa-2x"></i> 
+                         <span class="message-text">Profile updated successfully.</span>
+                       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                    <div class="nothing2" id="alertBox2">
+                        <i class="fa fa-info-circle fa-2x"></i> 
+                        <span class="message-text">No changes made to the profile.</span>
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+
                 <button type="submit" class="btn btn-primary w-100">Update Profile</button>
             </form>
         </div>

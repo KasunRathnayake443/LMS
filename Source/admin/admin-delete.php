@@ -18,8 +18,8 @@ $stml->execute();
 
 if ($stml->affected_rows > 0) {
     echo "<script>
-        alert('Admin deleted successfully.');
-        window.location.href='admins.php';
+        
+        window.location.href='admins.php?notifications2=1';
     </script>";
 } else {
     echo "<script>

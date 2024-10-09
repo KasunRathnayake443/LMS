@@ -1,15 +1,17 @@
 RewriteEngine On
 
+# Define base directory if .htaccess is not at the root
+
+RewriteBase /LMS/
+
 # Externally rewrite URL to hide /source/admin in the browser
 
-RewriteRule ^admin-login$ /LMS/source/admin/admin-login.php [L,QSA]
+RewriteRule ^admin-login$ source/admin/admin-login.php [L,QSA]
+RewriteRule ^admin-dashboard$ source/admin/admin-dashboard.php [L,QSA]
 
-# Rewrite other admin pages (you can add more as needed)
+# Prevent direct access to the /source/ directory but allow specific pages
 
-RewriteRule ^admin-dashboard$ /LMS/source/admin/admin-dashboard.php [L,QSA]
-
-# Prevent direct access to the /source/ directory
-
+RewriteCond %{REQUEST_URI} !^/LMS/source/admin/
 RewriteRule ^source/ - [F,L]
 
 # Prevent directory listing

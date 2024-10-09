@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stml->execute()) {
         echo "<script>
-            alert('Admin added successfully.');
-            window.location.href='admins.php';
+            
+            window.location.href='admins.php?notifications1=1';
         </script>";
     } else {
         echo "<script>

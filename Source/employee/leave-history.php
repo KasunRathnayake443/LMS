@@ -146,13 +146,18 @@ $notification_stml->close();
 </div>
 
                 <div class="success2" id="alertBox">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    Leave application updated successfully.
+                    <i class="fa fa-check fa-2x"></i> 
+                        <span class="message-text">Leave application updated successfully..</span>                            
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 </div>
+
+               
                 <div class="alert2" id="alertBox2">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    Leave request deleted successfully.
-                </div>
+                    <i class="fa fa-trash fa-2x"></i> 
+                    <span class="message-text">Leave request deleted successfully.</span>
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+
 
 <script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>

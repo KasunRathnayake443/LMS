@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stml->execute()) {
         echo "<script>
-            alert('Employee added successfully.');
-            window.location.href='employees.php';
+           
+            window.location.href='employees.php?notifications1=1';
         </script>";
     } else {
         echo "<script>

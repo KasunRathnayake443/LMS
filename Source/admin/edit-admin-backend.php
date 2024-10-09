@@ -17,7 +17,7 @@ $password = $_POST['password'];
 
 if ($password) {
     $stml = $conn->prepare("UPDATE admin SET A_name = ?, A_email = ?,  A_password = ? WHERE A_id = ?");
-    $stml->bind_param("sss", $name, $email,  $password, $A_id);
+    $stml->bind_param("ssss", $name, $email,  $password, $A_id);
 } else {
     $stml = $conn->prepare("UPDATE admin SET A_name = ?, A_email = ? WHERE A_id = ?");
     $stml->bind_param("sss", $name, $email, $A_id);
@@ -29,13 +29,13 @@ if ($stml->affected_rows > 0) {
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
     echo "<script>
-        alert('Profile updated successfully.');
-        window.location.href='admins.php';
+        
+        window.location.href='admins.php?notifications3=1';
     </script>";
 } else {
     echo "<script>
-        alert('No changes made to the profile.');
-        window.location.href='admins.php';
+        
+        window.location.href='admins.php?notifications4=1';
     </script>";
 }
 

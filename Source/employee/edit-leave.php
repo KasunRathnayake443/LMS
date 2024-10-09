@@ -133,6 +133,32 @@ $notification_stml->close();
     </div>
 </div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var leaveStart = document.getElementById('leaveStart');
+        var leaveEnd = document.getElementById('leaveEnd');
+        
+       
+        var today = new Date().toISOString().split('T')[0];
+        leaveStart.setAttribute('min', today);
+        
+       
+        leaveEnd.disabled = true;
+
+       
+        leaveStart.addEventListener('change', function() {
+            if (leaveStart.value) {
+                leaveEnd.disabled = false;
+                leaveEnd.setAttribute('min', leaveStart.value);
+            } else {
+                leaveEnd.disabled = true;
+                leaveEnd.removeAttribute('min');
+            }
+        });
+    });
+</script>
+
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 </body>
