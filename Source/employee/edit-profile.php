@@ -51,6 +51,7 @@ $notification_stml->close();
     <link rel="stylesheet" href="../css/e-dashboard.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
+    <link rel="stylesheet" href="../css/alerts.css">
 </head>
 <body>
 
@@ -126,12 +127,21 @@ $notification_stml->close();
                     <input type="password" class="form-control" id="password" name="password">
                     <small class="form-text text-muted">Leave blank to keep the current password.</small>
                 </div>
+                <div class="success" id="alertBox">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        Profile updated successfully.
+                </div>
+                <div class="nothing" id="alertBox2">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        No changes made to the profile.
+                </div>
                 <button type="submit" class="btn btn-primary w-100">Update Profile</button>
             </form>
         </div>
     </div>
 </div>
 
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 </body>

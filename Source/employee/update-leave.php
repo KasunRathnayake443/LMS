@@ -26,7 +26,6 @@ $stml->close();
 
 echo "<script>
     
-    alert('Leave application updated successfully.');
-    window.location.href='leave-history.php';
+    window.location.href='leave-history.php?notifications1=1';
 </script>";
 ?>

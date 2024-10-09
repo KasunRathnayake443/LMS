@@ -40,6 +40,7 @@ $notification_stml->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
+    <link rel="stylesheet" href="../css/alerts.css">
     <style>
         .container {
             margin-top: 20px;
@@ -54,8 +55,7 @@ $notification_stml->close();
     <link rel="stylesheet" href="../css/spinner.css">
 </head>
 <body>
-
-
+                
 <div id="spinner" class="show">
 <div class="spinner-border text-success" role="status">
   <span class="sr-only"></span>
@@ -145,6 +145,16 @@ $notification_stml->close();
     </div>
 </div>
 
+                <div class="success2" id="alertBox">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    Leave application updated successfully.
+                </div>
+                <div class="alert" id="alertBox2">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    Leave request deleted successfully.
+                </div>
+
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 </body>

@@ -6,7 +6,7 @@
     <title>Employee Login - LMS</title>
     <link rel="stylesheet" href="source/css/index.css">
     <link href="source/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
-  
+    <link rel="stylesheet" href="source/css/alerts.css">
 </head>
 <body>
     <a href="source/admin/admin-login.php" class="admin-panel-link">Go to Admin Panel</a>
@@ -20,6 +20,13 @@
         <div class="login-form-container">
             <div class="login-form">
                 <h2 class="text-center">Employee Login</h2>
+
+                
+                <div class="alert" id="alertBox">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                     Wrong Username or Password.
+                </div>
+
                 <form action="source/employee/e-login.php" method="post">
                     <div class="form-group">
                         <label for="email" class="form-label">Email address</label>
@@ -38,7 +45,8 @@
         </div>
     </div>
 
-    
+   
+    <script src="source/js/alerts.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

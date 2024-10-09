@@ -47,6 +47,7 @@ $notification_stml->close();
     <link rel="stylesheet" href="../css/e-dashboard.css">
     <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link rel="stylesheet" href="../css/spinner.css">
+    <link rel="stylesheet" href="../css/alerts.css">
 </head>
 <body>
 
@@ -131,6 +132,10 @@ $notification_stml->close();
                                     <textarea class="form-control" id="leaveReason" name="leaveReason" rows="3" required></textarea>
                                 </div>
                             </div>
+                            <div class="success" id="alertBox">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                Leave application submitted successfully.
+                            </div>
                             <button type="submit" class="btn btn-primary w-100">Apply</button>
                         </form>
                     </div>
@@ -170,6 +175,7 @@ $_SESSION['name'] = $name;
 $_SESSION['id'] = $id;
 ?>
 
+<script src="../js/notifications1.js"></script>
 <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout.js"></script>
 </body>

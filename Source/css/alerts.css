@@ -1,0 +1,49 @@
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  display: none; 
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.success {
+  padding: 20px;
+  background-color: green;
+  color: white;
+  display: none; 
+}
+
+.nothing {
+  padding: 20px;
+  background-color: #D3D0C9;
+  color: white;
+  display: none; 
+}
+
+.success2 {
+  padding: 20px;
+  background-color: green;
+  color: white;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  text-align: center; 
+  z-index: 9999; 
+  display: none;
+}

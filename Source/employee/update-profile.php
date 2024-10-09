@@ -31,13 +31,12 @@ if ($stml->affected_rows > 0) {
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
     echo "<script>
-        alert('Profile updated successfully.');
-        window.location.href='e-dashboard.php';
+        
+        window.location.href='edit-profile.php?notifications1=1';
     </script>";
 } else {
     echo "<script>
-        alert('No changes made to the profile.');
-        window.location.href='e-dashboard.php';
+        window.location.href='edit-profile.php?notifications2=1';
     </script>";
 }
 

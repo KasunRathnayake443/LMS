@@ -30,7 +30,6 @@ $stml->close();
 
 echo "<script>
     
-    alert('Leave application submitted successfully.');
-    window.location.href='e-dashboard.php';
+    window.location.href='e-dashboard.php?notifications1=1';
 </script>";
 ?>

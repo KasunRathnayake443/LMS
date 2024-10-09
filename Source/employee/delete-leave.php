@@ -17,8 +17,7 @@ $stml->bind_param("s", $leave_id);
 
 if ($stml->execute()) {
     echo "<script>
-        alert('Leave request deleted successfully.');
-        window.location.href='leave-history.php';
+        window.location.href='leave-history.php?notifications2=1';
     </script>";
 } else {
     echo "<script>
